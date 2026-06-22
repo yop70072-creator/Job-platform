@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التوظيف الإلكترونية للمستقبل</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    
+    <div id="login-section" class="form-section">
+        <h2>إنشاء حساب وتسجيل الدخول</h2>
+        <p class="section-subtitle">الرجاء إدخال بياناتك الشخصية للانتقال لفرص العمل المتاحة</p>
+        
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">اسم المستخدم الكامل:</label>
+                <input type="text" id="username" required placeholder="أدخل اسمك الثلاثي">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" required placeholder="name@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="location">الموقع الحالي (المدينة / الدولة):</label>
+                <input type="text" id="location" required placeholder="مثال: الخرطوم، السودان">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">رقم الجوال:</label>
+                <input type="tel" id="phone" required placeholder="09xxxxxxx">
+            </div>
+
+            <div class="form-group">
+                <label for="nationality">الجنسية:</label>
+                <select id="nationality" required>
+                    <option value="" disabled selected>اختر الجنسية</option>
+                    <option value="سوداني">سوداني</option>
+                    <option value="سعودي">سعودي</option>
+                    <option value="مصري">مصري</option>
+                    <option value="آخر">جنسية أخرى</option>
+                </select>
+            </div>
+
+            <button type="submit" class="main-btn">تسجيل الدخول والانتقال للوظائف</button>
+        </form>
+    </div>
+
+    <div id="jobs-section" class="form-section hidden">
+        <h2>الوظائف الجامعية المتاحة</h2>
+        <p class="section-subtitle">اضغط على "تقديم الآن" للوظيفة المناسبة لتخصصك لاستكمال المرفقات</p>
+        
+        <div class="jobs-list">
+            <div class="job-card">
+                <div class="job-icon">💻</div>
+                <h3>مهندس برمجيات</h3>
+                <p>قسم تكنولوجيا المعلومات وتطوير النظم</p>
+                <button class="apply-btn" onclick="openApplication('مهندس برمجيات')">تقديم الآن</button>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon">⚖️</div>
+                <h3>مستشار قانوني</h3>
+                <p>الإدارة القانونية والشؤون التعاقدية</p>
+                <button class="apply-btn" onclick="openApplication('مستشار قانوني')">تقديم الآن</button>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon">📊</div>
+                <h3>محاسب مالي مالي</h3>
+                <p>إدارة الحسابات، التدقيق والموازنة</p>
+                <button class="apply-btn" onclick="openApplication('محاسب مالي')">تقديم الآن</button>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon">🤝</div>
+                <h3>أخصائي موارد بشرية</h3>
+                <p>قسم إدارة وجذب الكوادر البشرية (HR)</p>
+                <button class="apply-btn" onclick="openApplication('أخصائي موارد بشرية')">تقديم الآن</button>
+            </div>
+        </div>
+        
+        <button type="button" class="back-link-btn" onclick="goToLogin()">⬅️ العودة لتعديل بيانات الحساب</button>
+    </div>
+
+    <div id="application-section" class="form-section hidden">
+        <h2 id="job-title-display">التقديم على وظيفة: </h2>
+        <p class="section-subtitle">يرجى مراجعة اسمك واختيار مؤهلاتك الجامعية والخبرات العملية</p>
+        
+        <div class="extra-fields-box">
+            <div class="form-group">
+                <label>اسم العميل (المتقدم للوظيفة):</label>
+                <input type="text" id="display-client-name" readonly class="readonly-field">
+            </div>
+
+            <div class="form-group">
+                <label for="university-degree">الشهادة الجامعية:</label>
+                <select id="university-degree" required>
+                    <option value="" disabled selected>اختر المؤهل الأكاديمي</option>
+                    <option value="بكالوريوس">شهادة البكالوريوس</option>
+                    <option value="ماجستير">شهادة الماجستير</option>
+                    <option value="دكتوراه">شهادة الدكتوراه</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience-certificate">شهادة الخبرة:</label>
+                <select id="experience-certificate" required>
+                    <option value="" disabled selected>اختر مستوى الخبرة المتاحة لديك</option>
+                    <option value="بدون خبرة (خريج جديد)">لا توجد شهادة خبرة (خريج جديد)</option>
+                    <option value="خريج خبرة من 1 - 3 سنوات">شهادة خبرة (من 1 إلى 3 سنوات)</option>
+                    <option value="خريج خبرة من 4 - 6 سنوات">شهادة خبرة (من 4 إلى 6 سنوات)</option>
+                    <option value="خريج خبرة طويلة أكثر من 6 سنوات">شهادة خبرة طويلة (أكثر من 6 سنوات)</option>
+                </select>
+            </div>
+
+            <button type="button" class="success-btn" onclick="submitFinalApplication()">تأكيد إرسال طلب التوظيف بنجاح</button>
+            <button type="button" class="back-btn" onclick="backToJobs()">العودة لقائمة الوظائف</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
